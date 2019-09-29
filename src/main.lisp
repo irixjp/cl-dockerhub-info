@@ -22,7 +22,7 @@
                                           (make-image-path image)
                                           "/")))
          (data (getf (jonathan:parse (dex:get url)) (intern key :keyword))))
-    (format t "~A~%" data)))
+    data))
 
 (defun get-tags-list (image)
   (let* ((url (quri:make-uri :defaults
@@ -32,7 +32,7 @@
                                           "/tags/")))
          (data (mapcar #'(lambda (tag-info) (getf tag-info :|name|))
                        (getf (jonathan:parse (dex:get url)) :|results|))))
-    (format t "~{~A~%~}" data)))
+    data))
 
 
 ;; blah blah blah.

@@ -16,8 +16,8 @@ exec ros -Q -- $0 "$@"
   (declare (ignorable argv))
   (handler-case
       (if (string= key "tags")
-          (cl-dockerhub-info:get-tags-list image)
-          (cl-dockerhub-info:get-image-info image key))
+          (format t "~{~A~%~}" (cl-dockerhub-info:get-tags-list image))
+          (format t "~A~%" (cl-dockerhub-info:get-image-info image key)))
       (error (e)
         (format *standard-output* "~&Error: ~A~%" e)
         (uiop:quit -1))))
